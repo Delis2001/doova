@@ -1,0 +1,52 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "doova-709a7",
+          "appId": "1:804708194137:android:41ef41efb6d0f5b5b25e48",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "doova-709a7",
+          "configurations": {
+            "android": "1:804708194137:android:41ef41efb6d0f5b5b25e48",
+            "ios": "1:804708194137:ios:bdf0b950c52e2c9eb25e48",
+            "macos": "1:804708194137:ios:172bdfbe9254d711b25e48",
+            "web": "1:804708194137:web:7388a0b8f5e7d050b25e48",
+            "windows": "1:804708194137:web:11b39c4b9172686bb25e48"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ]
+    }
+  ]
+}

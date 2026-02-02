@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "804708194137",
+    "firebase_url": "https://doova-709a7-default-rtdb.firebaseio.com",
+    "project_id": "doova-709a7",
+    "storage_bucket": "doova-709a7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804708194137:android:41ef41efb6d0f5b5b25e48",
+        "android_client_info": {
+          "package_name": "com.delis.doova"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804708194137-nc7llsf10r56bmnt8nf8pe2e0e091svr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.delis.doova",
+            "certificate_hash": "d18969bdeed61fdca69f3063fa2743e92403c6d3"
+          }
+        },
+        {
+          "client_id": "804708194137-f014knev3q3kq1mqhghtfl6402lp55bo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwpeddCFNrpKOXJ4nq-0rLSlXR5eMCGr4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "804708194137-f014knev3q3kq1mqhghtfl6402lp55bo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "804708194137-gv1egls5r4p96v1c4n2s94gle3cfok8q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.doova"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
