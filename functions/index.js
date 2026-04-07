@@ -30,6 +30,17 @@ exports.sendPush = onRequest(async (req, res) => {
       title: taskTitle,
       body: formattedDateTime,
     },
+    android: {
+      priority: "high",
+      notification: {
+        channel_id: "doova_channel_id",
+      },
+    },
+    apns: {
+      headers: {
+        "apns-priority": "10",
+      },
+    },
     data: {
       click_action: "FLUTTER_NOTIFICATION_CLICK",
       taskId: taskId || "",

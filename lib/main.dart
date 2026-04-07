@@ -17,9 +17,28 @@ import 'package:doova/provider/theme/theme_provider.dart';
 import 'package:doova/utils/route/app_route.dart';
 import 'package:doova/utils/theme/theme.dart';
 import 'package:doova/views/error/error.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 late final GoRouter _router;
+final apiKey = 'test_eMNEUKZmZqLyoJNcrEqUfRTttxf';
+
+// import 'package:purchases_flutter/purchases_flutter.dart';
+// import 'dart:io';
+
+// Future<void> initializeRevenueCat() async {
+//   // Platform-specific API keys
+//   String apiKey;
+//   if (Platform.isIOS) {
+//     apiKey = 'test_eMNEUKZmZqLyoJNcrEqUfRTttxf';
+//   } else if (Platform.isAndroid) {
+//     apiKey = 'test_eMNEUKZmZqLyoJNcrEqUfRTttxf';
+//   } else {
+//     throw UnsupportedError('Platform not supported');
+//   }
+
+//   await Purchases.configure(PurchasesConfiguration(apiKey));
+// }
 
 void main() {
   runZonedGuarded(() async {
@@ -28,6 +47,9 @@ void main() {
     RequestConfiguration requestConfiguration = RequestConfiguration(
         testDeviceIds: ['ddb8639a-0fd0-4b63-8eb3-cc1fa1322284']);
     MobileAds.instance.updateRequestConfiguration(requestConfiguration);
+    await Purchases.configure(
+      PurchasesConfiguration("YOUR_REVENUECAT_API_KEY"),
+    );
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
@@ -40,7 +62,7 @@ void main() {
     _router = AppRoutes.goRoute(navigatorKey);
 
     await initLocalNotifications();
-    initPushMessaging();
+    await initPushMessaging();
     runApp(Doova(themeProvider: themeProvider));
   }, (error, stackTrace) {
     debugPrint('Caught async error: $error');
@@ -106,6 +128,9 @@ class _DoovaState extends State<Doova> {
                 );
               };
               return child!;
+              // ResponsiveContainer(
+              //   child: child!,
+              // );
             },
           );
         },

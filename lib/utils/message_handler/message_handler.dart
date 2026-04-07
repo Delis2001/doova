@@ -20,14 +20,27 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await initLocalNotifications();
+  _showLocalNotification(message);
   debugPrint('📡 BG message: ${message.messageId}');
 }
 
+const String kNotificationChannelId = 'doova_channel_id';
+
 /// Initialize local notifications plugin
 Future<void> initLocalNotifications() async {
+  const AndroidNotificationChannel channel = AndroidNotificationChannel(
+    kNotificationChannelId,
+    'Doova Notifications',
+    description: 'Doova task notifications',
+    importance: Importance.max,
+  );
+
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(channel);
+
   const androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
   const initializationSettings =
       InitializationSettings(android: androidSettings);
@@ -55,7 +68,7 @@ Future<void> initLocalNotifications() async {
 }
 
 /// Initialize push notifications and handlers
-void initPushMessaging() async {
+Future<void> initPushMessaging() async {
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
   // Request permission
@@ -63,16 +76,16 @@ void initPushMessaging() async {
   debugPrint('🔑 FCM permission: ${settings.authorizationStatus}');
 
   // Set background handler
- if(!kIsWeb){
-   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
- }
+  if (!kIsWeb) {
+    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+  }
 
   // Foreground message handler - show local notification
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     debugPrint('📩 FCM foreground message: ${message.notification?.title}');
-    if(!kIsWeb){
+    if (!kIsWeb) {
       _showLocalNotification(message);
-    }else{
+    } else {
       debugPrint('🌐 Web foreground message received');
       // Show in-app banner instead
     }

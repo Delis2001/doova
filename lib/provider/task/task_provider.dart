@@ -20,6 +20,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:doova/utils/message_handler/message_handler.dart';
 
 final String catchMessage = 'We ran into a problem. Please try again shortly';
 final String networkMessage =

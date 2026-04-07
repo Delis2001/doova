@@ -33,6 +33,7 @@ class ImageProviderNotifier extends ChangeNotifier {
     ImageSource source,
     Size size,
   ) async {
+    
     try {
       final pickedFile = await _picker.pickImage(source: source);
       if (pickedFile != null) {
@@ -42,42 +43,28 @@ class ImageProviderNotifier extends ChangeNotifier {
       } else {
         _errorMessage = "No image selected.";
       }
-      notifyListeners();
+       notifyListeners();
     } catch (e) {
       _errorMessage = "Failed to pick image: $e";
       if (e is SocketException) {
-        if (context?.mounted ?? false) {
-          Toast.errorToast(context!,
-              'Sorry, could not update your profile photo. Please try again later',
-              color: Colors.grey.shade900,
-              position: DelightSnackbarPosition.bottom,
-              leading: SizedBox(
-                  height: size.height * 0.06,
-                  width: size.width * 0.06,
-                  child:
-                      Image.asset(fit: BoxFit.contain, IconManager.warning)));
-        }
+       if(context?.mounted ?? false){
+          Toast.errorToast(context!,'Sorry, could not update your profile photo. Please try again later',
+          color:  Colors.grey.shade900, position: DelightSnackbarPosition.bottom,leading: SizedBox(height: size.height*0.06,width: size.width*0.06,child: Image.asset(fit: BoxFit.contain,IconManager.warning)));
+       }
       } else {
-        if (context?.mounted ?? false) {
-          Toast.errorToast(context!,
-              'Sorry, could not update your profile photo. Please try again later',
-              color: Colors.grey.shade900,
-              position: DelightSnackbarPosition.bottom,
-              leading: SizedBox(
-                  height: size.height * 0.06,
-                  width: size.width * 0.06,
-                  child:
-                      Image.asset(fit: BoxFit.contain, IconManager.warning)));
-        }
+       if(context?.mounted ?? false){
+         Toast.errorToast(context!,'Sorry, could not update your profile photo. Please try again later',
+          color:  Colors.grey.shade900, position: DelightSnackbarPosition.bottom,leading: SizedBox(height: size.height*0.06,width: size.width*0.06,child: Image.asset(fit: BoxFit.contain,IconManager.warning)));
+       }
       }
       if (kDebugMode) print(_errorMessage);
-      notifyListeners();
+       notifyListeners();
     }
   }
 
   /// Retrieve lost image (if app was terminated during image picking)
   Future<void> retrieveLostData(BuildContext context) async {
-    if (kIsWeb) return; // Skip web
+       if (kIsWeb) return; // Skip web
     try {
       final response = await _picker.retrieveLostData();
 
@@ -92,19 +79,18 @@ class ImageProviderNotifier extends ChangeNotifier {
         _errorMessage = "Failed to retrieve image: ${response.exception}";
         if (kDebugMode) print(_errorMessage);
       }
-      notifyListeners();
+    notifyListeners();
     } catch (e) {
       _errorMessage = "Error retrieving lost image: $e";
       if (kDebugMode) print(_errorMessage);
-      notifyListeners();
+       notifyListeners();
     }
   }
 
   Future<void> uploadToFirebaseStorage() async {
     // 1. Check network
     if (!await hasNetwork()) {
-      throw Exception(
-          'Sorry, could not update your profile photo. Please try again later');
+     throw Exception('Sorry, could not update your profile photo. Please try again later');
     }
 
     // 2. Reload user
@@ -144,22 +130,17 @@ class ImageProviderNotifier extends ChangeNotifier {
 
       if (kDebugMode) print('Image uploaded: $downloadURL');
     } on TimeoutException {
-      throw Exception(
-          'Sorry, could not update your profile photo. Please try again later');
+      throw Exception('Sorry, could not update your profile photo. Please try again later');
     } on FirebaseException catch (e) {
       if (e.code == 'canceled') {
-        throw Exception(
-            'Sorry, could not update your profile photo. Please try again later');
+       throw Exception('Sorry, could not update your profile photo. Please try again later');
       } else {
-        throw Exception(
-            'Sorry, could not update your profile photo. Please try again later');
+        throw Exception('Sorry, could not update your profile photo. Please try again later');
       }
     } on SocketException {
-      throw Exception(
-          'Sorry, could not update your profile photo. Please try again later');
+     throw Exception('Sorry, could not update your profile photo. Please try again later');
     } catch (e) {
-      throw Exception(
-          'Sorry, could not update your profile photo. Please try again later');
+      throw Exception('Sorry, could not update your profile photo. Please try again later');
     }
   }
 

@@ -1,8 +1,8 @@
-import 'package:doova/r.dart';
 import 'package:doova/utils/helpers/toast.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
+import 'package:doova/r.dart';
 
 class IntroScreen extends StatefulWidget {
   const IntroScreen({super.key});
@@ -20,7 +20,6 @@ class _IntroScreenState extends State<IntroScreen>
   void initState() {
     super.initState();
 
-    // Fade animation
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
@@ -31,17 +30,19 @@ class _IntroScreenState extends State<IntroScreen>
     );
     _controller.forward();
 
-    // Navigate after splash duration
-    Future.delayed(const Duration(seconds: 2), () {
-      if (!mounted) return;
+    // Navigate after splash
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future.delayed(const Duration(seconds: 2), () {
+        if (!mounted) return;
 
-      final user = FirebaseAuth.instance.currentUser;
+        final user = FirebaseAuth.instance.currentUser;
 
-      if (user != null) {
-        context.go('/HomeScreen');
-      } else {
-        context.go('/IntroScreenDefault');
-      }
+        if (user != null) {
+          context.go('/HomeScreen');
+        } else {
+          context.go('/IntroScreenDefault');
+        }
+      });
     });
   }
 
@@ -53,36 +54,35 @@ class _IntroScreenState extends State<IntroScreen>
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final logoSize = size.height * 0.050;
+    final fontSize = size.width * 0.050;
+    Toast.setScreenWidth(size.width);
     return Scaffold(
-      body: LayoutBuilder(builder: (context, constraints) {
-          Toast.setScreenWidth(constraints.maxWidth);
-        return Center(
+      body: Center(
         child: FadeTransition(
           opacity: _fadeAnimation,
-          child: FittedBox(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  AssetsManager.logo,
-                  height: constraints.maxHeight * 0.15,
-                  width: constraints.maxWidth * 0.15,
-                  color: const Color(0xff6F24E9),
-                ),
-                const SizedBox(width: 12),
-                Text(
-                  'Doova',
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleLarge!
-                      .copyWith(fontSize: constraints.maxWidth * 0.1, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                AssetsManager.logo,
+                height: logoSize,
+                width: logoSize,
+                color: const Color(0xff6F24E9),
+              ),
+              const SizedBox(width: 12),
+              Text(
+                'Doova',
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge!
+                    .copyWith(fontSize: fontSize, fontWeight: FontWeight.bold),
+              ),
+            ],
           ),
         ),
-      );
-      },)
+      ),
     );
   }
 }
