@@ -13,8 +13,8 @@ The app allows users to create, manage, and organize tasks efficiently with a cl
 <p align="center">
   <img src="assets/screenshot1.png" width="300"/>
   <img src="assets/screenshot2.png" width="300"/>
-  <img src="assets/screenshot3.png" width="300"/>
-  <img src="assets/screenshot4.png" width="300"/>
+  <img src="assets/screentshot3.png" width="300"/>
+  <img src="assets/screentshot4.png" width="300"/>
 </p>
 
 ## Purpose
