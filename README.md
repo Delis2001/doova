@@ -9,6 +9,18 @@ The app allows users to create, manage, and organize tasks efficiently with a cl
 - Firebase (Auth,Backend)
 - Dart
 - 
+## 📱 Download APK
+[Download APK](https://github.com/Delis2001/doova/raw/main/release/app-release.apk)
+
+Or via [GitHub Release](https://github.com/Delis2001/doova/releases/tag/v0.1.1+4)
+
+---
+
+## 📝 Closed Test Release
+Version: **0.1.1+4**  
+Status: **Closed testing**  
+Release date: **2026-04-07**
+
 ## 📸 Screenshots
 <p align="center">
   <img src="assets/screentshot1.png" width="300"/>
