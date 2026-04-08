@@ -23,8 +23,8 @@ Release date: **2026-04-07**
 
 ## 📸 Screenshots
 <p align="center">
-  <img src="https://github.com/Delis2001/doova/blob/main/assets/screenshot1.png?raw=true" width="250"/>
-  <img src="https://github.com/Delis2001/doova/blob/main/assets/screenshot2.png?raw=true" width="250"/>
+  <img src="https://github.com/Delis2001/doova/blob/main/assets/screentshot1.png?raw=true" width="250"/>
+  <img src="https://github.com/Delis2001/doova/blob/main/assets/screentshot2.png?raw=true" width="250"/>
   <br/>
   <img src="https://github.com/Delis2001/doova/blob/main/assets/screentshot3.png?raw=true" width="250"/>
   <img src="https://github.com/Delis2001/doova/blob/main/assets/screentshot4.png?raw=true" width="250"/>
